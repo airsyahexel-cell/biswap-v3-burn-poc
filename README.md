@@ -1,5 +1,10 @@
 # Biswap V3 `burn()` Rounding Bug — Post-Mortem & PoC
 
+![tests](https://github.com/airsyahexel-cell/biswap-v3-burn-poc/actions/workflows/test.yml/badge.svg)
+![Solidity](https://img.shields.io/badge/Solidity-0.8.16-363636)
+![Hardhat](https://img.shields.io/badge/Hardhat-2.22-yellow)
+![License](https://img.shields.io/badge/license-MIT%20%2B%20BUSL--1.1-blue)
+
 **A liquidity-accounting bug that let an attacker mint 4.847B phantom liquidity, burn it to zero, and buy 11,283 WBNB for 63,263 wei of BUSD.**
 
 On **24 November 2026**, a legacy Biswap V3 WBNB/BUSD pool on BNB Chain was drained of **50,993.9789 BUSD** gross. After repaying a Pancake V3 flash loan, the attacker walked away with **50,553.9228 BUSD** (≈ $50.55K). The root cause is a single conditional in `LiquidityModule.burn()`: the pool only decreases its active liquidity when the *rounded* current-point amounts are non-zero. At the bottom of the price range, those amounts round to zero even though the position is active.
