@@ -1,0 +1,30 @@
+{
+  "name": "biswap-v3-burn-poc",
+  "version": "1.0.0",
+  "description": "Post-mortem and reproduction of the Biswap V3 burn() rounding bug (November 2026)",
+  "main": "index.js",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test test/BiswapV3Burn.test.js",
+    "test:fork": "hardhat test test/BiswapV3Burn.fork.test.js",
+    "fork:check": "hardhat run scripts/fork-check.js"
+  },
+  "keywords": [
+    "defi",
+    "security",
+    "biswap",
+    "uniswap-v3",
+    "post-mortem",
+    "solidity",
+    "bsc"
+  ],
+  "author": "Rikkaav",
+  "license": "MIT",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-chai-matchers": "^2.0.8",
+    "@nomicfoundation/hardhat-ethers": "^3.0.8",
+    "chai": "^4.5.0",
+    "ethers": "^6.13.4",
+    "hardhat": "^2.22.17"
+  }
+}
